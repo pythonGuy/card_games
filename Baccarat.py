@@ -68,6 +68,9 @@ class Baccarat(Card_Game):
             print "%s gets: %s" % (player.name, card)
             player_total = player.hand_value(player.hand)
             player_drew  = True
+        else:
+            player_drew  = False
+            draw_card    = ""
         if dealers_total < 3:
             card = self.dealer.deal()
             print "Dealer gets: %s" % card
@@ -106,8 +109,10 @@ class Baccarat(Card_Game):
             player.wins += 1
         elif player_total < dealers_total:
             print "Dealer wins"
+            player.losses += 1
         else:
             print "Game is a 'Tie'"
+            player.pushes += 1
         self.dealer.take_cards()
 
     class Dealer():
